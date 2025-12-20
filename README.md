@@ -79,7 +79,7 @@ After completing the Setup section, you can run this command to verify your envi
 <summary>Using uv</summary>
 
 ```bash
-uv run python3 env_utils.py
+uv run python env_utils.py
 ```
 
 </details>
@@ -89,7 +89,7 @@ uv run python3 env_utils.py
 
 ```bash
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-python3 env_utils.py
+python env_utils.py
 ```
 
 </details>
