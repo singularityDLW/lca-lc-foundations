@@ -1,4 +1,8 @@
+import sys
+sys.path.insert(0, '../..')
+
 from dotenv import load_dotenv
+from model_config import get_agent
 
 load_dotenv()
 
@@ -25,10 +29,7 @@ Return recipe suggestions and eventually the recipe instructions to the user, if
 
 """
 
-from langchain.agents import create_agent
-
-agent = create_agent(
-    model="gpt-5-nano",
+agent = get_agent(
     tools=[web_search],
     system_prompt=system_prompt
 )

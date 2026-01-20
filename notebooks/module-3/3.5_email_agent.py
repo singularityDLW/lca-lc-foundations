@@ -1,14 +1,19 @@
+import sys
+sys.path.insert(0, '../..')
+
 from dotenv import load_dotenv
+from model_config import get_agent
+
+load_dotenv()
+
 from dataclasses import dataclass
-from langchain.agents import AgentState, create_agent
+from langchain.agents import AgentState
 from langchain.tools import tool, ToolRuntime
 from langgraph.types import Command
 from langchain.messages import ToolMessage
 from langchain.agents.middleware import wrap_model_call, dynamic_prompt, HumanInTheLoopMiddleware
 from langchain.agents.middleware import ModelRequest, ModelResponse
 from typing import Callable
-
-load_dotenv()
 
 
 @dataclass
@@ -92,8 +97,7 @@ def dynamic_prompt_func(request: ModelRequest) -> str:
         return unauthenticated_prompt
 
 
-agent = create_agent(
-        "gpt-5-nano",
+agent = get_agent(
         tools=[authenticate, check_inbox, send_email],
         state_schema=AuthenticatedState,
         context_schema=EmailContext,
